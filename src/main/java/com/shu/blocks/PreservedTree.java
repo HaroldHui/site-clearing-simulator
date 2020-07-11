@@ -4,4 +4,9 @@ public class PreservedTree extends AbstractBlock {
     public PreservedTree() {
         super(2, 10);
     }
+
+    @Override
+    public String toString() {
+        return "T";
+    }
 }

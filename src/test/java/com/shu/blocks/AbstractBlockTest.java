@@ -22,5 +22,10 @@ class AbstractBlockTest {
         public TestBlock(Integer fuelUsage, Integer extraCost) {
             super(fuelUsage, extraCost);
         }
+
+        @Override
+        public String toString() {
+            return "";
+        }
     }
 }

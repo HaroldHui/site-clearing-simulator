@@ -2,6 +2,9 @@ package com.shu;
 
 import com.shu.blocks.AbstractBlock;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class ConstructionSite {
     private AbstractBlock[][] blocks;
     private final Integer xDimensionLength;
@@ -24,5 +27,13 @@ public class ConstructionSite {
 
     public AbstractBlock[][] getBlocks() {
         return blocks;
+    }
+
+    public String toString() {
+        return Arrays.stream(blocks)
+                .map(lineOfBlocks -> Arrays.stream(lineOfBlocks)
+                        .map(AbstractBlock::toString)
+                        .collect(Collectors.joining(" "))
+                ).collect(Collectors.joining(System.lineSeparator()));
     }
 }

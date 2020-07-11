@@ -16,4 +16,6 @@ public abstract class AbstractBlock {
     public Integer cost() {
         return COMMUNICATION_COST + fuelUsage * FUEL_COST + extraCost;
     }
+
+    abstract public String toString();
 }
