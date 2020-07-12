@@ -2,6 +2,7 @@ package com.shu.commands;
 
 import com.shu.Facing;
 import com.shu.Position;
+import com.shu.costs.CostUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,14 +41,14 @@ class LeftCommandTest {
     }
 
     @Test
-    @DisplayName("When execute with a north facing position, it shouldn't have any cost")
+    @DisplayName("When execute with a north facing position, it should only have communication cost")
     void executeWhenFacingNorthNoCost() {
         Position originalPosition = new Position(0, 0, Facing.NORTH);
         LeftCommand leftCommand = new LeftCommand(originalPosition);
         CommandResult result = leftCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 0;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1;
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }
@@ -83,14 +84,14 @@ class LeftCommandTest {
     }
 
     @Test
-    @DisplayName("When execute with a west facing position, it shouldn't have any cost")
+    @DisplayName("When execute with a west facing position, it should only have communication cost")
     void executeWhenFacingWestNoCost() {
         Position originalPosition = new Position(0, 0, Facing.WEST);
         LeftCommand leftCommand = new LeftCommand(originalPosition);
         CommandResult result = leftCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 0;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1;
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }
@@ -126,14 +127,14 @@ class LeftCommandTest {
     }
 
     @Test
-    @DisplayName("When execute with a south facing position, it shouldn't have any cost")
+    @DisplayName("When execute with a south facing position, it should only have communication cost")
     void executeWhenFacingSouthNoCost() {
         Position originalPosition = new Position(0, 0, Facing.SOUTH);
         LeftCommand leftCommand = new LeftCommand(originalPosition);
         CommandResult result = leftCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 0;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1;
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }
@@ -169,14 +170,14 @@ class LeftCommandTest {
     }
 
     @Test
-    @DisplayName("When execute with a east facing position, it shouldn't have any cost")
+    @DisplayName("When execute with a east facing position, it should only have communication cost")
     void executeWhenFacingEastNoCost() {
         Position originalPosition = new Position(0, 0, Facing.EAST);
         LeftCommand leftCommand = new LeftCommand(originalPosition);
         CommandResult result = leftCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 0;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1;
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }

@@ -2,6 +2,7 @@ package com.shu.commands;
 
 import com.shu.Facing;
 import com.shu.Position;
+import com.shu.costs.CostUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,14 +36,14 @@ class InvalidCommandTest {
     }
 
     @Test
-    @DisplayName("When execute an Invalid command, it shouldn't have any cost")
+    @DisplayName("When execute an Invalid command, it should only have communication cost")
     void executeNoCost() {
         Position originalPosition = new Position(0, 0, Facing.NORTH);
         InvalidCommand invalidCommand = new InvalidCommand(originalPosition);
         CommandResult result = invalidCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 0;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1;
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }

@@ -1,8 +1,17 @@
 package com.shu.blocks;
 
-public class RemovableTree extends AbstractBlock {
+import com.shu.costs.FuelCost;
+import com.shu.costs.RepairingDamageCost;
+
+import java.util.List;
+
+public class RemovableTree extends Block {
     public RemovableTree() {
-        super(2, 2);
+        super(List.of(
+                new FuelCost(),
+                new FuelCost(),
+                new RepairingDamageCost()
+        ));
     }
 
     @Override

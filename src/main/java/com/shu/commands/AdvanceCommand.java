@@ -3,13 +3,20 @@ package com.shu.commands;
 import com.shu.ConstructionSite;
 import com.shu.Facing;
 import com.shu.Position;
-import com.shu.blocks.AbstractBlock;
+import com.shu.blocks.Block;
 import com.shu.blocks.PreservedTree;
 import com.shu.blocks.VisitedBlock;
+import com.shu.costs.Cost;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class AdvanceCommand implements Command {
+public class AdvanceCommand extends Command {
 
     private final ConstructionSite constructionSite;
     private final Position position;
@@ -22,7 +29,7 @@ public class AdvanceCommand implements Command {
     }
 
     @Override
-    public CommandResult execute() {
+    protected CommandResult executeCommand() {
         return move(position, getNextPositionFunc(position.getFacing()), numberOfSquares);
     }
 
@@ -30,24 +37,26 @@ public class AdvanceCommand implements Command {
         Position nextPosition = nextPositionFunc.apply(currentPosition);
 
         if (!constructionSite.isOnSite(nextPosition)) {
-            return new CommandResult(currentPosition, 0, CommandState.BEYOND_BOUNDARIES);
+            return new CommandResult(currentPosition, Collections.emptyList(), CommandState.BEYOND_BOUNDARIES);
         }
 
-        AbstractBlock block = getBlock(nextPosition);
-        Integer cost = block.cost();
+        Block block = getBlock(nextPosition);
+        List<Cost> costs = block.getCosts();
         CommandState state = block.getClass() == PreservedTree.class ? CommandState.REMOVE_PRESERVED_TREE : CommandState.SUCCESS;
 
         constructionSite.getBlocks()[nextPosition.getyDimension()][nextPosition.getxDimension()] = new VisitedBlock();
 
         if (state == CommandState.REMOVE_PRESERVED_TREE || steps == 1) {
-            return new CommandResult(nextPosition, cost, state);
+            return new CommandResult(nextPosition, costs, state);
         }
 
         CommandResult nextMoveResult = move(nextPosition, nextPositionFunc, steps - 1);
-        return new CommandResult(nextPosition, cost + nextMoveResult.getCost(), nextMoveResult.getCommandState());
+        return new CommandResult(nextPosition,
+                Stream.of(costs, nextMoveResult.getCosts()).flatMap(Collection::stream).collect(Collectors.toList()),
+                nextMoveResult.getCommandState());
     }
 
-    private AbstractBlock getBlock(Position position) {
+    private Block getBlock(Position position) {
         return constructionSite.getBlocks()[position.getyDimension()][position.getxDimension()];
     }
 

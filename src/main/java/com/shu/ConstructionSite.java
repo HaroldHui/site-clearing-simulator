@@ -1,16 +1,16 @@
 package com.shu;
 
-import com.shu.blocks.AbstractBlock;
+import com.shu.blocks.Block;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class ConstructionSite {
-    private AbstractBlock[][] blocks;
+    private Block[][] blocks;
     private final Integer xDimensionLength;
     private final Integer yDimensionLength;
 
-    public ConstructionSite(AbstractBlock[][] blocks) {
+    public ConstructionSite(Block[][] blocks) {
         this.blocks = blocks;
         this.xDimensionLength = blocks[0].length;
         this.yDimensionLength = blocks.length;
@@ -25,14 +25,14 @@ public class ConstructionSite {
         return i >= minValue && i <= maxValue;
     }
 
-    public AbstractBlock[][] getBlocks() {
+    public Block[][] getBlocks() {
         return blocks;
     }
 
     public String toString() {
         return Arrays.stream(blocks)
                 .map(lineOfBlocks -> Arrays.stream(lineOfBlocks)
-                        .map(AbstractBlock::toString)
+                        .map(Block::toString)
                         .collect(Collectors.joining(" "))
                 ).collect(Collectors.joining(System.lineSeparator()));
     }

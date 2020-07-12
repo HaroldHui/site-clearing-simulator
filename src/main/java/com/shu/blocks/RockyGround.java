@@ -1,8 +1,15 @@
 package com.shu.blocks;
 
-public class RockyGround extends AbstractBlock {
+import com.shu.costs.FuelCost;
+
+import java.util.List;
+
+public class RockyGround extends Block {
     public RockyGround() {
-        super(2, 0);
+        super(List.of(
+                new FuelCost(),
+                new FuelCost()
+        ));
     }
 
     @Override

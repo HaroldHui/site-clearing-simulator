@@ -8,7 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class ConstructionSiteTest {
 
-    private final AbstractBlock[][] blocks = {
+    private final Block[][] blocks = {
             {new PlainLand(), new PreservedTree()},
             {new RemovableTree(), new RockyGround()},
             {new PlainLand(), new VisitedBlock()},

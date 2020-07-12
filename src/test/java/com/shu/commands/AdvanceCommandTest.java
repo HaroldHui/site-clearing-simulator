@@ -4,6 +4,7 @@ import com.shu.ConstructionSite;
 import com.shu.Facing;
 import com.shu.Position;
 import com.shu.blocks.*;
+import com.shu.costs.CostUtils;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,8 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 2 + 5 + 3;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1 + 1 + 4 + 2; // communication cost + 3 block costs
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }
@@ -49,8 +50,8 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        AbstractBlock[][] actualBlocks = constructionSite.getBlocks();
-        ArrayList<AbstractBlock> visitedBlocks = Lists.list(actualBlocks[0][0], actualBlocks[0][1], actualBlocks[0][2]);
+        Block[][] actualBlocks = constructionSite.getBlocks();
+        ArrayList<Block> visitedBlocks = Lists.list(actualBlocks[0][0], actualBlocks[0][1], actualBlocks[0][2]);
 
         assertThat(visitedBlocks).asList().allSatisfy(block -> assertThat(block).isInstanceOf(VisitedBlock.class));
     }
@@ -77,8 +78,8 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 3 + 2 + 0;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1 + 1 + 2 + 0; // communication cost + 2 block costs
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }
@@ -91,8 +92,8 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        AbstractBlock[][] actualBlocks = constructionSite.getBlocks();
-        ArrayList<AbstractBlock> visitedBlocks = Lists.list(actualBlocks[2][2], actualBlocks[3][2]);
+        Block[][] actualBlocks = constructionSite.getBlocks();
+        ArrayList<Block> visitedBlocks = Lists.list(actualBlocks[2][2], actualBlocks[3][2]);
 
         assertThat(visitedBlocks).asList().allSatisfy(block -> assertThat(block).isInstanceOf(VisitedBlock.class));
     }
@@ -119,8 +120,8 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 1 + 2 + 10;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1 + 2 + 10; // communication cost + 3 block costs
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }
@@ -133,8 +134,8 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        AbstractBlock[][] actualBlocks = constructionSite.getBlocks();
-        AbstractBlock actualBlock = actualBlocks[2][1];
+        Block[][] actualBlocks = constructionSite.getBlocks();
+        Block actualBlock = actualBlocks[2][1];
 
         assertThat(actualBlock).isInstanceOf(VisitedBlock.class);
     }
@@ -147,14 +148,14 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 2);
         CommandResult result = advanceCommand.execute();
 
-        AbstractBlock[][] actualBlocks = constructionSite.getBlocks();
-        AbstractBlock actualBlock = actualBlocks[3][0];
+        Block[][] actualBlocks = constructionSite.getBlocks();
+        Block actualBlock = actualBlocks[3][0];
 
         assertThat(actualBlock).isInstanceOf(PlainLand.class);
     }
 
     private ConstructionSite generateConstructionSite() {
-        AbstractBlock[][] blocks = {
+        Block[][] blocks = {
                 {new PlainLand(), new RemovableTree(), new RockyGround(), new PlainLand()},
                 {new PlainLand(), new PlainLand(), new PlainLand(), new PlainLand()},
                 {new PlainLand(), new PreservedTree(), new RockyGround(), new PlainLand()},

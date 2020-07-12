@@ -3,7 +3,7 @@ package com.shu.commands;
 import com.shu.ConstructionSite;
 import com.shu.Facing;
 import com.shu.Position;
-import com.shu.blocks.AbstractBlock;
+import com.shu.blocks.Block;
 import com.shu.blocks.PlainLand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class CommandParserTest {
 
     private final Position position = new Position(0, 0, Facing.NORTH);
-    private final AbstractBlock[][] blocks = {{new PlainLand()}};
+    private final Block[][] blocks = {{new PlainLand()}};
     private final ConstructionSite constructionSite = new ConstructionSite(blocks);
 
     @Test

@@ -2,6 +2,7 @@ package com.shu.commands;
 
 import com.shu.Facing;
 import com.shu.Position;
+import com.shu.costs.CostUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,14 +35,14 @@ class QuitCommandTest {
     }
 
     @Test
-    @DisplayName("When execute an Quit command, it shouldn't have any cost")
+    @DisplayName("When execute an Quit command, it should only have communication cost")
     void executeNoCost() {
         Position originalPosition = new Position(0, 0, Facing.NORTH);
         QuitCommand quitCommand = new QuitCommand(originalPosition);
         CommandResult result = quitCommand.execute();
 
-        Integer actualCost = result.getCost();
-        Integer expectedCost = 0;
+        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer expectedCost = 1;
 
         assertThat(actualCost).isEqualTo(expectedCost);
     }

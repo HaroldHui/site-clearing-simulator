@@ -1,8 +1,12 @@
 package com.shu.blocks;
 
-public class PlainLand extends AbstractBlock {
+import com.shu.costs.FuelCost;
+
+import java.util.List;
+
+public class PlainLand extends Block {
     public PlainLand() {
-        super(1, 0);
+        super(List.of(new FuelCost()));
     }
 
     @Override

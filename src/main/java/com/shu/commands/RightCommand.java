@@ -3,7 +3,10 @@ package com.shu.commands;
 import com.shu.Facing;
 import com.shu.Position;
 
-public class RightCommand implements Command {
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class RightCommand extends Command {
     private final Position position;
 
     public RightCommand(Position position) {
@@ -11,7 +14,7 @@ public class RightCommand implements Command {
     }
 
     @Override
-    public CommandResult execute() {
+    protected CommandResult executeCommand() {
         switch (position.getFacing()) {
             case EAST: {
                 position.setFacing(Facing.SOUTH);
@@ -30,6 +33,6 @@ public class RightCommand implements Command {
                 break;
             }
         }
-        return new CommandResult(position, 0, CommandState.SUCCESS);
+        return new CommandResult(position, Collections.emptyList(), CommandState.SUCCESS);
     }
 }

@@ -1,8 +1,17 @@
 package com.shu.blocks;
 
-public class PreservedTree extends AbstractBlock {
+import com.shu.costs.DestructionProtectedTreeCost;
+import com.shu.costs.FuelCost;
+
+import java.util.List;
+
+public class PreservedTree extends Block {
     public PreservedTree() {
-        super(2, 10);
+        super(List.of(
+                new FuelCost(),
+                new FuelCost(),
+                new DestructionProtectedTreeCost()
+        ));
     }
 
     @Override
