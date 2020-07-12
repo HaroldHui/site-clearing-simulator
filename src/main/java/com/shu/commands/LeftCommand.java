@@ -6,7 +6,7 @@ import com.shu.costs.CommunicationCost;
 
 import java.util.Collections;
 
-public class LeftCommand extends Command {
+public class LeftCommand implements Command {
 
     private final Position position;
 

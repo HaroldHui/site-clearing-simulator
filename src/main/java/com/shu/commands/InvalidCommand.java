@@ -4,7 +4,7 @@ import com.shu.Position;
 
 import java.util.Collections;
 
-public class InvalidCommand extends Command {
+public class InvalidCommand implements Command {
     private final Position position;
 
     public InvalidCommand(Position position) {

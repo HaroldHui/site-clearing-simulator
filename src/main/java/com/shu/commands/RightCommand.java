@@ -6,7 +6,7 @@ import com.shu.costs.CommunicationCost;
 
 import java.util.Collections;
 
-public class RightCommand extends Command {
+public class RightCommand implements Command {
     private final Position position;
 
     public RightCommand(Position position) {

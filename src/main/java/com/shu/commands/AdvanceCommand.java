@@ -16,7 +16,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class AdvanceCommand extends Command {
+public class AdvanceCommand implements Command {
 
     private final ConstructionSite constructionSite;
     private final Position position;

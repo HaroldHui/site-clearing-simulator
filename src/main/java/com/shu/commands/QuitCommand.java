@@ -4,7 +4,7 @@ import com.shu.Position;
 
 import java.util.Collections;
 
-public class QuitCommand extends Command {
+public class QuitCommand implements Command {
 
     private final Position position;
 
