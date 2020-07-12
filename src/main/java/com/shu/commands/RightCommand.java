@@ -2,6 +2,7 @@ package com.shu.commands;
 
 import com.shu.Facing;
 import com.shu.Position;
+import com.shu.costs.CommunicationCost;
 
 import java.util.Collections;
 
@@ -18,7 +19,7 @@ public class RightCommand extends Command {
     }
 
     @Override
-    protected CommandResult executeCommand() {
+    public CommandResult execute() {
         switch (position.getFacing()) {
             case EAST: {
                 position.setFacing(Facing.SOUTH);
@@ -37,6 +38,6 @@ public class RightCommand extends Command {
                 break;
             }
         }
-        return new CommandResult(position, Collections.emptyList(), CommandState.SUCCESS);
+        return new CommandResult(position, Collections.singletonList(new CommunicationCost()), CommandState.SUCCESS);
     }
 }

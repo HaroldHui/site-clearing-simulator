@@ -6,6 +6,7 @@ import com.shu.Position;
 import com.shu.blocks.Block;
 import com.shu.blocks.PreservedTree;
 import com.shu.blocks.VisitedBlock;
+import com.shu.costs.CommunicationCost;
 import com.shu.costs.Cost;
 
 import java.util.Collection;
@@ -33,8 +34,13 @@ public class AdvanceCommand extends Command {
     }
 
     @Override
-    protected CommandResult executeCommand() {
-        return move(position, getNextPositionFunc(position.getFacing()), numberOfSquares);
+    public CommandResult execute() {
+        CommandResult commandResult = move(position, getNextPositionFunc(position.getFacing()), numberOfSquares);
+        return new CommandResult(commandResult.getPosition(),
+                Stream.of(Collections.singletonList(new CommunicationCost()), commandResult.getCosts())
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.toList()),
+                commandResult.getCommandState());
     }
 
     private CommandResult move(Position currentPosition, Function<Position, Position> nextPositionFunc, Integer steps) {

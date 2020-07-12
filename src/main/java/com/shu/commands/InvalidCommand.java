@@ -17,7 +17,7 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    protected CommandResult executeCommand() {
+    public CommandResult execute() {
         return new CommandResult(this.position, Collections.emptyList(), CommandState.INVALID_COMMAND);
     }
 }

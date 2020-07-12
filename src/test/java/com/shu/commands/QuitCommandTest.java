@@ -2,9 +2,11 @@ package com.shu.commands;
 
 import com.shu.Facing;
 import com.shu.Position;
-import com.shu.report.ReportGenerator;
+import com.shu.costs.Cost;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -35,16 +37,15 @@ class QuitCommandTest {
     }
 
     @Test
-    @DisplayName("When execute an Quit command, it should only have communication cost")
+    @DisplayName("When execute an Quit command, it shouldn't have any cost")
     void executeNoCost() {
         Position originalPosition = new Position(0, 0, Facing.NORTH);
         QuitCommand quitCommand = new QuitCommand(originalPosition);
         CommandResult result = quitCommand.execute();
 
-        Integer actualCost = ReportGenerator.calculateCost(result.getCosts());
-        Integer expectedCost = 1;
+        List<Cost> actualCost = result.getCosts();
 
-        assertThat(actualCost).isEqualTo(expectedCost);
+        assertThat(actualCost.size()).isEqualTo(0);
     }
 
 }
