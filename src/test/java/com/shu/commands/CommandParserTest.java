@@ -19,7 +19,7 @@ class CommandParserTest {
     @Test
     @DisplayName("When get a Right command, it should parse it to a RightCommand")
     void parseRightCommand() {
-        Command actualCommand = CommandParser.parse("Right", position, constructionSite);
+        Command actualCommand = CommandParser.parse("r", position, constructionSite);
 
         assertThat(actualCommand).isInstanceOf(RightCommand.class);
     }
@@ -27,7 +27,7 @@ class CommandParserTest {
     @Test
     @DisplayName("When get a Left command, it should parse it to a LeftCommand")
     void parseLeftCommand() {
-        Command actualCommand = CommandParser.parse("Left", position, constructionSite);
+        Command actualCommand = CommandParser.parse("l", position, constructionSite);
 
         assertThat(actualCommand).isInstanceOf(LeftCommand.class);
     }
@@ -35,7 +35,7 @@ class CommandParserTest {
     @Test
     @DisplayName("When get a Quit command, it should parse it to a QuitCommand")
     void parseQuitCommand() {
-        Command actualCommand = CommandParser.parse("Quit", position, constructionSite);
+        Command actualCommand = CommandParser.parse("q", position, constructionSite);
 
         assertThat(actualCommand).isInstanceOf(QuitCommand.class);
     }
@@ -43,7 +43,7 @@ class CommandParserTest {
     @Test
     @DisplayName("When get a correct Advance command, it should parse it to a AdvanceCommand")
     void parseAdvanceCommandSuccess() {
-        Command actualCommand = CommandParser.parse("Advance 12", position, constructionSite);
+        Command actualCommand = CommandParser.parse("a 12", position, constructionSite);
 
         assertThat(actualCommand).isInstanceOf(AdvanceCommand.class);
     }
@@ -51,7 +51,7 @@ class CommandParserTest {
     @Test
     @DisplayName("When get an advance command with invalid number, it should parse it to a InvalidCommand")
     void parseAdvanceCommandInvalid() {
-        Command actualCommand = CommandParser.parse("Advance 1a", position, constructionSite);
+        Command actualCommand = CommandParser.parse("a 1a", position, constructionSite);
 
         assertThat(actualCommand).isInstanceOf(InvalidCommand.class);
     }

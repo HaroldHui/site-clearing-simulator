@@ -10,21 +10,21 @@ public class CommandParser {
             return new InvalidCommand(position);
         }
         command = command.trim();
-        if (command.equals("Left")) {
+        if (command.equals("l")) {
             return new LeftCommand(position);
         }
-        if (command.equals("Right")) {
+        if (command.equals("r")) {
             return new RightCommand(position);
         }
-        if (command.startsWith("Advance")) {
-            String numberOfSquares = command.replace("Advance", "").trim();
+        if (command.startsWith("a")) {
+            String numberOfSquares = command.replaceFirst("a", "").trim();
             try {
                 return new AdvanceCommand(constructionSite,position,Integer.parseInt(numberOfSquares));
             } catch (NumberFormatException e) {
                 return new InvalidCommand(position);
             }
         }
-        if(command.equals("Quit")) {
+        if(command.equals("q")) {
             return new QuitCommand(position);
         }
         return new InvalidCommand(position);
