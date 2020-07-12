@@ -61,7 +61,7 @@ public class AdvanceCommand extends Command {
         }
 
         CommandResult nextMoveResult = move(nextPosition, nextPositionFunc, steps - 1);
-        return new CommandResult(nextPosition,
+        return new CommandResult(nextMoveResult.getPosition(),
                 Stream.of(costs, nextMoveResult.getCosts()).flatMap(Collection::stream).collect(Collectors.toList()),
                 nextMoveResult.getCommandState());
     }
