@@ -2,7 +2,7 @@ package com.shu.commands;
 
 import com.shu.Facing;
 import com.shu.Position;
-import com.shu.costs.CostUtils;
+import com.shu.report.ReportGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,7 @@ class InvalidCommandTest {
         InvalidCommand invalidCommand = new InvalidCommand(originalPosition);
         CommandResult result = invalidCommand.execute();
 
-        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer actualCost = ReportGenerator.calculateCost(result.getCosts());
         Integer expectedCost = 1;
 
         assertThat(actualCost).isEqualTo(expectedCost);

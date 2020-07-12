@@ -4,7 +4,7 @@ import com.shu.ConstructionSite;
 import com.shu.Facing;
 import com.shu.Position;
 import com.shu.blocks.*;
-import com.shu.costs.CostUtils;
+import com.shu.report.ReportGenerator;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer actualCost = ReportGenerator.calculateCost(result.getCosts());
         Integer expectedCost = 1 + 1 + 4 + 2; // communication cost + 3 block costs
 
         assertThat(actualCost).isEqualTo(expectedCost);
@@ -78,7 +78,7 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer actualCost = ReportGenerator.calculateCost(result.getCosts());
         Integer expectedCost = 1 + 1 + 2 + 0; // communication cost + 2 block costs
 
         assertThat(actualCost).isEqualTo(expectedCost);
@@ -120,7 +120,7 @@ class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(constructionSite, originalPosition, 3);
         CommandResult result = advanceCommand.execute();
 
-        Integer actualCost = CostUtils.calculateCredits(result.getCosts());
+        Integer actualCost = ReportGenerator.calculateCost(result.getCosts());
         Integer expectedCost = 1 + 2 + 10; // communication cost + 3 block costs
 
         assertThat(actualCost).isEqualTo(expectedCost);
