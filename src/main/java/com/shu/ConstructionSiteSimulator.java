@@ -55,8 +55,8 @@ public class ConstructionSiteSimulator {
         }
         addUnclearedSquaresCost();
 
-
         System.out.println(ReportGenerator.generateReport(commands, costs));
+        System.out.println("Thankyou for using the Aconex site clearing simulator.");
     }
 
     private CommandState runCommand(String commandString) {

@@ -29,9 +29,6 @@ public class ReportGenerator {
 
         generateCostReport(costs, sb);
 
-        sb.append(System.lineSeparator());
-        sb.append(System.lineSeparator());
-        sb.append("Thankyou for using the Aconex site clearing simulator.");
         return sb.toString();
     }
 
