@@ -3,7 +3,6 @@ package com.shu.commands;
 import com.shu.Facing;
 import com.shu.Position;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class RightCommand extends Command {

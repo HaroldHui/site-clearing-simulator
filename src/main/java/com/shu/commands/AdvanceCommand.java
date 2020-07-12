@@ -8,7 +8,6 @@ import com.shu.blocks.PreservedTree;
 import com.shu.blocks.VisitedBlock;
 import com.shu.costs.Cost;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
