@@ -28,6 +28,11 @@ public class AdvanceCommand extends Command {
     }
 
     @Override
+    public String toString() {
+        return String.format("advance %d", this.numberOfSquares);
+    }
+
+    @Override
     protected CommandResult executeCommand() {
         return move(position, getNextPositionFunc(position.getFacing()), numberOfSquares);
     }

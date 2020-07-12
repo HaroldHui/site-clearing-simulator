@@ -12,6 +12,11 @@ public class InvalidCommand extends Command {
     }
 
     @Override
+    public String toString() {
+        return "invalid command";
+    }
+
+    @Override
     protected CommandResult executeCommand() {
         return new CommandResult(this.position, Collections.emptyList(), CommandState.INVALID_COMMAND);
     }

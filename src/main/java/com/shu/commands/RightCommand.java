@@ -13,6 +13,11 @@ public class RightCommand extends Command {
     }
 
     @Override
+    public String toString() {
+        return "right";
+    }
+
+    @Override
     protected CommandResult executeCommand() {
         switch (position.getFacing()) {
             case EAST: {

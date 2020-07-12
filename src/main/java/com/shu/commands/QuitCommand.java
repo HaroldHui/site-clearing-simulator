@@ -13,6 +13,11 @@ public class QuitCommand extends Command {
     }
 
     @Override
+    public String toString() {
+        return "quit";
+    }
+
+    @Override
     protected CommandResult executeCommand() {
         return new CommandResult(this.position, Collections.emptyList(), CommandState.QUIT);
     }

@@ -14,6 +14,11 @@ public class LeftCommand extends Command {
     }
 
     @Override
+    public String toString() {
+        return "turn left";
+    }
+
+    @Override
     protected CommandResult executeCommand() {
         switch (position.getFacing()) {
             case EAST: {
